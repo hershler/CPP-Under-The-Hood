@@ -1,51 +1,78 @@
 #include <stdio.h>
 #include "cpp2c_encapsulation_defs.h"
 
-static Box largeBox = ctor(10, 20, 30);
+static Box largeBox;
+int isBox99 = 0;
+int isBox88 = 0;
 
 void thisFunc()
 {
-    std::printf("\n--- thisFunc() ---\n\n"); 
-    static Box box99 = ctor(99, 99, 99);
-    operator*=(box99, 10);
+    static Box box99;
+
+    if(isBox99 == -1){
+        _Z3BoxDE(&box99);
+        return;
+    }
+    printf("\n--- thisFunc() ---\n\n");
+
+    if(!isBox99) {
+        _Z3BoxCEddd(&box99, 99, 99, 99);
+        isBox99 = 1;
+    }
+    _Z3Box18operatorMultAssignFEd(&box99, 10);
 }
 
 void thatFunc()
 {
-    std::printf("\n--- thatFunc() ---\n\n"); 
-    static Box box88 = ctor(88, 88, 88);
-    operator*=(box88, 10);
+    static Box box88;
+
+    if(isBox88 == -1){
+        _Z3BoxDE(&box88);
+        return;
+    }
+    printf("\n--- thatFunc() ---\n\n");
+
+    if(!isBox88) {
+        _Z3BoxCEddd(&box88, 88, 88, 88);
+        isBox88 = 1;
+    }
+    _Z3Box18operatorMultAssignFEd(&box88, 10);
 }
 
 void doBoxes()
 {
     printf("\n--- Start doBoxes() ---\n\n");
 
-    Box b1 = ctor(3);
-    Box b2 = ctor(4, 5, 6);
+    Box b1, b2, b3, b4, ret;
+    _Z3BoxCEd(&b1, 3);
+    _Z3BoxCEddd(&b2, 4, 5, 6);
     
-    printf("b1 volume: %f\n", b1->width * b1->length * b1->height);
-    printf("b2 volume: %f\n", b2->width * b2->length * b2->height);
+    printf("b1 volume: %f\n", b1.width * b1.length * b1.height);
+    printf("b2 volume: %f\n", b2.width * b2.length * b2.height);
 
-    operator*=(b1, 1.5);
-    operator*=(b2, 0.5);
+    _Z3Box18operatorMultAssignFEd(&b1, 1.5);
+    _Z3Box18operatorMultAssignFEd(&b2, 0.5);
 
-    printf("b1 volume: %f\n", b1->width * b1->length * b1->height);
-    printf("b2 volume: %f\n",  b2->width * b2->length * b2->height);
+    printf("b1 volume: %f\n", b1.width * b1.length * b1.height);
+    printf("b2 volume: %f\n",  b2.width * b2.length * b2.height);
 
-    Box b3 = b2;
-    Box b4 = operator*=(Box b0 = b1, 3);
+    _Z3BoxCEBox(&b3, &b2);
+
+    _Z3BoxCEBox(&ret, &b4);
+    _Z3Box18operatorMultAssignFEd(&ret, 3);
+    _Z3BoxCEBox(&b4, &ret);
+    _Z3BoxDE(&ret);
     printf("b3 %s b4\n", b3.width == b4.width && b3.height == b4.height && b3.length == b4.length ? "equals" : "does not equal");
 
-    operator*=(b3, 1.5);
-    operator*=(b4, 0.5);
+    _Z3Box18operatorMultAssignFEd(&b3, 1.5);
+    _Z3Box18operatorMultAssignFEd(&b4, 0.5);
     printf("Now, b3 %s b4\n", b3.width == b4.width && b3.height == b4.height && b3.length == b4.length ? "equals" : "does not equal");
 
     printf("\n--- End doBoxes() ---\n\n");
-    dtor(&b1);
-    dtor(&b2);
-    dtor(&b3);
-    dtor(&b4);
+    _Z3BoxDE(&b1);
+    _Z3BoxDE(&b2);
+    _Z3BoxDE(&b3);
+    _Z3BoxDE(&b4);
 }
 
 
@@ -53,32 +80,43 @@ void doShelves()
 {
     printf("\n--- start doShelves() ---\n\n");
 
-    Box aBox = 5;
+    Box aBox;
+    _Z3BoxCEd(&aBox, 5);
 
     Shelf aShelf;
+    _Z5ShelfCE(&aShelf);
 
-    printShelf(&aShelf);
-    setBox(&aShelf, 1, largeBox);
-    setBox(&aShelf, 0, aBox);
+    _Z5Shelf5printFE(&aShelf);
+    _Z5Shelf6setBoxFEikBox(&aShelf, 1, &largeBox);
+    _Z5Shelf6setBoxFEikBox(&aShelf, 0, &aBox);
+    _Z5Shelf5printFE(&aShelf);
+    _Z5Shelf7messageVE = "This is the total volume on the shelf:";
+    _Z5Shelf5printFE(&aShelf);
+    _Z5Shelf7messageVE = "Shelf's volume:";
+    _Z5Shelf5printFE(&aShelf);
 
-    printShelf(&aShelf);
-    aShelf.message = "This is the total volume on the shelf:";
-    printShelf(&aShelf);
-    Shelf.message = "Shelf's volume:";
-    printShelf(&aShelf);
+    Box temp1;
+    _Z3BoxCEddd(&temp1, 2, 4, 6);
+    _Z5Shelf6setBoxFEikBox(&aShelf, 1, &temp1);
+    _Z3BoxDE(&temp1);
 
-    setBox(&aShelf, 1, ctor(2, 4, 6));
-
-    setBox(&aShelf, 2, 2);
-    printShelf(&aShelf);
+    Box temp2;
+    _Z3BoxCEddd(&temp2, 2, 4, 6);
+    _Z5Shelf6setBoxFEikBox(&aShelf, 2, &temp2);
+    _Z3BoxDE(&temp2);
+    _Z5Shelf5printFE(&aShelf);
 
     printf("\n--- end doShelves() ---\n\n");
-    dtor(&aBox);
+    _Z3BoxDE(&aBox);
+    _Z5ShelfDE(&aShelf);
 }
 
 int main()
 {
-    std::printf("\n--- Start main() ---\n\n");
+
+    _Z3BoxCEddd(&largeBox, 10, 20, 30);
+
+    printf("\n--- Start main() ---\n\n");
 
     doBoxes();
 
@@ -90,8 +128,16 @@ int main()
 
     doShelves();
         
-    std::printf("\n--- End main() ---\n\n");
-
+    printf("\n--- End main() ---\n\n");
+    _Z3BoxDE(&largeBox);
+    if(isBox99){
+        isBox99 = -1;
+        thisFunc();
+    }
+    if(isBox88){
+        isBox88 = -1;
+        thisFunc();
+    }
     return 0;
 }
 

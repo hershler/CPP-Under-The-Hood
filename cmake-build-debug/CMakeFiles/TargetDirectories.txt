@@ -1,3 +1,0 @@
-/home/a/Documents/from_cpp_to_c/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/a/Documents/from_cpp_to_c/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/a/Documents/from_cpp_to_c/cmake-build-debug/CMakeFiles/from_cpp_to_c.dir

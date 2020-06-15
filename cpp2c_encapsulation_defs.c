@@ -2,30 +2,43 @@
 #include <stdio.h>
 //// Box ////////////
 
-Box ctor(double dim){
-    Box b;
+
+void _Z3BoxCE(Box* b){
+    b->length = 1;
+    b->width = 1;
+    b->height = 1;
+    _Z3Box5printFE(b);
+}
+
+void _Z3BoxCEd(Box* b, double dim){
     b->length = dim;
     b->width = dim;
     b->height = dim;
-    printBox(b);
+    _Z3Box5printFE(b);
+}
+
+void _Z3BoxCEddd(Box* b, double l, double w, double h) {
+    b->length = l;
+    b->width = w;
+    b->height = h;
+    _Z3Box5printFE(b);
+}
+
+void _Z3BoxCEBox(Box* b, Box* another){
+    *b = *another;
+}
+
+Box* _Z3Box14assignOperatorFEBox(Box* b, Box* another){
+    *b = *another;
     return b;
 }
 
-Box ctor(double l, double w, double h) {
-    Box b;
-    b.length = l;
-    b.width = w;
-    b.height = h;
-    printBox(b);
-    return b;
-}
-
-void dtor(Box& b)
+void _Z3BoxDE(Box* b)
 {
     printf("Box destructor, %f x %f x %f\n", b->width, b->height, b->length);
 }
 
-Box* operator*=(Box* b, double mult)
+Box* _Z3Box18operatorMultAssignFEd(Box* b, double mult)
 {
     b->width *= mult;
     b->height *= mult;
@@ -34,7 +47,7 @@ Box* operator*=(Box* b, double mult)
     return b;
 }
 
-void printBox(const Box* b)
+void _Z3Box5printFE(const Box* b)
 {
     printf("Box: %f x %f x %f\n", b->length, b->width, b->height);
 }
@@ -42,26 +55,31 @@ void printBox(const Box* b)
 
 //// Shelf ////////////
 
-const char* const DEF_MSG = "The total volume held on the shelf is";
-const char* message = DEF_MSG;
 
-void setBox(Shelf* s, int index, const Box* dims)
+void _Z5ShelfCE(Shelf* s){}
+
+void _Z5ShelfDE(Shelf* s){}
+
+const char* _Z5Shelf7messageVE = "The total volume held on the shelf is";
+
+
+void _Z5Shelf6setBoxFEikBox(Shelf* s, int index, const Box* dims)
 {
-    s->boxes[index] = dims;
+    s->_Z5Shelf5boxesVE[index] = *dims;
 }
 
-double getVolume(const Shelf* s)
+double _Z5Shelf9getVolumeFE(const Shelf* s)
 {
     double vol = 0;
-    for (size_t i = 0; i < s->NUM_BOXES; ++i)
-        vol += s->boxes[i].width * s->boxes[i]length * s->boxes[i]height;
+    for (size_t i = 0; i < 3; ++i)
+        vol += s->_Z5Shelf5boxesVE[i].width * s->_Z5Shelf5boxesVE[i].length * s->_Z5Shelf5boxesVE[i].height;
 
     return vol;
 }
 
-void printShelf(const Shelf* s)
+void _Z5Shelf5printFE(const Shelf* s)
 {
-    printf("%s %f\n", s->message, getVolume(s));
+    printf("%s %f\n", _Z5Shelf7messageVE, _Z5Shelf9getVolumeFE(s));
 }
 
 

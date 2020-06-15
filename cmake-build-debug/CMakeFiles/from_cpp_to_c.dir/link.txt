@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/from_cpp_to_c.dir/main.cpp.o  -o from_cpp_to_c 
