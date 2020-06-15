@@ -1,7 +1,7 @@
 #ifndef __CPP2C_ENCAPSULATION_DEFS_H__
 #define __CPP2C_ENCAPSULATION_DEFS_H__
 
-//// Box ////////////
+/*Box */
 
 class Box
 {
