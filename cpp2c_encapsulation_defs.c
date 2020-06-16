@@ -28,7 +28,7 @@ void _Z3BoxCEBox(Box* b, Box* another){
     *b = *another;
 }
 
-Box* _Z3Box14assignOperatorFEBox(Box* b, Box* another){
+Box* _Z3Box14assignOperatorFEBox(Box* b, const Box* another){
     *b = *another;
     return b;
 }
@@ -65,7 +65,7 @@ const char* _Z5Shelf7messageVE = "The total volume held on the shelf is";
 
 void _Z5Shelf6setBoxFEikBox(Shelf* s, int index, const Box* dims)
 {
-    s->_Z5Shelf5boxesVE[index] = *dims;
+    _Z3Box14assignOperatorFEBox(&(s->_Z5Shelf5boxesVE[index]), dims);
 }
 
 double _Z5Shelf9getVolumeFE(const Shelf* s)

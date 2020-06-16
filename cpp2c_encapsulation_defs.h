@@ -10,11 +10,11 @@ typedef struct{
 }Box;
 
 
-void _z3BoxCE(Box* b);
+void _Z3BoxCE(Box* b);
 void _Z3BoxCEd(Box* b, double dim);
 void _Z3BoxCEddd(Box* b, double l, double w, double h);
 void _Z3BoxCEBox(Box* b, Box* another);
-Box* _Z3Box14assignOperatorFEBox(Box* b, Box* another);
+Box* _Z3Box14assignOperatorFEBox(Box* b,const  Box* another);
 void _Z3BoxDE(Box* b);
 
 Box* _Z3Box18operatorMultAssignFEd(Box* b, double mult);
@@ -28,8 +28,8 @@ void _Z3Box5printFE(const Box* b);
 
 
 //// Shelf ////////////
-extern const char* _Z5Shelf7messageVE;
 
+extern const char* _Z5Shelf7messageVE;
 
 typedef struct {
     Box _Z5Shelf5boxesVE[3];

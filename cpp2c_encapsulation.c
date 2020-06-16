@@ -111,7 +111,7 @@ void doShelves()
     _Z5ShelfDE(&aShelf);
 }
 
-int main()
+/*int main()
 {
 
     _Z3BoxCEddd(&largeBox, 10, 20, 30);
@@ -127,7 +127,7 @@ int main()
     thatFunc();
 
     doShelves();
-        
+
     printf("\n--- End main() ---\n\n");
     _Z3BoxDE(&largeBox);
     if(isBox99){
@@ -139,5 +139,5 @@ int main()
         thisFunc();
     }
     return 0;
-}
+}*/
 

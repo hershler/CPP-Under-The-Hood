@@ -71,22 +71,4 @@ void doShelves()
     std::printf("\n--- end doShelves() ---\n\n");
 }
 
-int main()
-{
-    std::printf("\n--- Start main() ---\n\n");
-
-    doBoxes();
-
-    thisFunc();
-    thisFunc();
-    thisFunc();
-    thatFunc();
-    thatFunc();
-
-    doShelves();
-        
-    std::printf("\n--- End main() ---\n\n");
-
-    return 0;
-}
 
