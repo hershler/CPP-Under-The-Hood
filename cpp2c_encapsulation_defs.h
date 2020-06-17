@@ -1,7 +1,7 @@
 #ifndef __CPP2C_ENCAPSULATION_DEFS_H__
 #define __CPP2C_ENCAPSULATION_DEFS_H__
 
-//// Box ////////////
+/*/// Box ///////////*/
 
 typedef struct{
     double length;
@@ -23,11 +23,11 @@ Box* _Z3Box18operatorMultAssignFEd(Box* b, double mult);
 void _Z3Box5printFE(const Box* b);
 
 
-//// Box Defs ////////////
+/*/// Box Defs ///////////*/
 
 
 
-//// Shelf ////////////
+/*/// Shelf ///////////*/
 
 extern const char* _Z5Shelf7messageVE;
 
@@ -43,7 +43,7 @@ void _Z5Shelf5printFE(const Shelf* s);
 
 
 
-//// Shelf Defs ////////////
+/*/// Shelf Defs ///////////*/
 
-#endif // __CPP2C_ENCAPSULATION_DEFS_H__
+#endif /* __CPP2C_ENCAPSULATION_DEFS_H__*/
 

@@ -41,9 +41,10 @@ void thatFunc()
 
 void doBoxes()
 {
+    Box b1, b2, b3, b4, ret;
+
     printf("\n--- Start doBoxes() ---\n\n");
 
-    Box b1, b2, b3, b4, ret;
     _Z3BoxCEd(&b1, 3);
     _Z3BoxCEddd(&b2, 4, 5, 6);
     
@@ -78,12 +79,13 @@ void doBoxes()
 
 void doShelves()
 {
+    Box aBox, temp1, temp2;
+    Shelf aShelf;
+
     printf("\n--- start doShelves() ---\n\n");
 
-    Box aBox;
     _Z3BoxCEd(&aBox, 5);
 
-    Shelf aShelf;
     _Z5ShelfCE(&aShelf);
 
     _Z5Shelf5printFE(&aShelf);
@@ -95,12 +97,10 @@ void doShelves()
     _Z5Shelf7messageVE = "Shelf's volume:";
     _Z5Shelf5printFE(&aShelf);
 
-    Box temp1;
     _Z3BoxCEddd(&temp1, 2, 4, 6);
     _Z5Shelf6setBoxFEikBox(&aShelf, 1, &temp1);
     _Z3BoxDE(&temp1);
 
-    Box temp2;
     _Z3BoxCEddd(&temp2, 2, 4, 6);
     _Z5Shelf6setBoxFEikBox(&aShelf, 2, &temp2);
     _Z3BoxDE(&temp2);

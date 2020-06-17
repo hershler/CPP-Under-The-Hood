@@ -1,19 +1,20 @@
-#include <cstdio>
+#include <stdio.h>
 #include "cpp2c_inheritance_defs.h"
 
 
 void doMaterials()
 {
     Material_t mat1, mat2;
+    Materials mat;
+    typedef struct MatTest { Materials mat; Material_t mat_t; }MatTest;
+
     printf("\n--- Start doMaterials() ---\n\n");
-    
-    //Materials mat; - do nothing
-    printf("Size of Materials: %lu\n", sizeof(char));
-    printf("Size of mat: %lu\n", sizeof(char));
+
+    printf("Size of Materials: %lu\n", sizeof(Materials));
+    printf("Size of mat: %lu\n", sizeof(Materials));
     printf("Size of Materials::Types: %lu\n", sizeof(enum Types));
     printf("Size of Material_t: %lu\n", sizeof(Material_t));
 
-    struct MatTest { /*Materials mat; */Material_t mat_t; };
 
     printf("Size of Materials + Material_t: %lu\n", sizeof(MatTest));
 
@@ -36,9 +37,10 @@ void doMaterials()
 
 void doPhysicalBox()
 {
+    PhysicalBox pb1, pb2, pb3, pb4;
+
     printf("\n--- Start doPhysicalBox() ---\n\n");
 
-    PhysicalBox pb1, pb2, pb3, pb4;
     _Z11PhysicalBoxCEdddTypes(&pb1, 8, 6, 4, PLASTIC);
     _Z11PhysicalBoxCETypes(&pb2, WOOD);
     _Z11PhysicalBoxCEdddTypes(&pb3, 7, 7, 7, OTHER);
@@ -69,9 +71,10 @@ void doPhysicalBox()
 
 void doWeightBox()
 {
+    WeightBox pw1, pw2, pw3, pw4;
+
     printf("\n--- Start doWeightBox() ---\n\n");
 
-    WeightBox pw1, pw2, pw3, pw4;
     _Z9WeightBoxCEdddd(&pw1, 8, 6, 4, 25);
     _Z9WeightBoxCEdddd(&pw2, 1, 2, 3, 0.0);
     _Z9WeightBoxCEdddd(&pw3, 10, 20, 30, 15);

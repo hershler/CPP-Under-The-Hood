@@ -1,6 +1,6 @@
 #include "cpp2c_encapsulation_defs.h"
 #include <stdio.h>
-//// Box ////////////
+/*/// Box ///////////*/
 
 
 void _Z3BoxCE(Box* b){
@@ -53,7 +53,7 @@ void _Z3Box5printFE(const Box* b)
 }
 
 
-//// Shelf ////////////
+/*/// Shelf ///////////*/
 
 
 void _Z5ShelfCE(Shelf* s){}
@@ -71,7 +71,8 @@ void _Z5Shelf6setBoxFEikBox(Shelf* s, int index, const Box* dims)
 double _Z5Shelf9getVolumeFE(const Shelf* s)
 {
     double vol = 0;
-    for (size_t i = 0; i < 3; ++i)
+    size_t i;
+    for (i = 0; i < 3; ++i)
         vol += s->_Z5Shelf5boxesVE[i].width * s->_Z5Shelf5boxesVE[i].length * s->_Z5Shelf5boxesVE[i].height;
 
     return vol;
