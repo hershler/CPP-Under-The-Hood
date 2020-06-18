@@ -2,10 +2,26 @@
 #include "cpp2c_inheritance_defs.h"
 #include <string.h>
 
+
+/*Materials*/
+void _Z9MaterialsCE(Materials* _this){}
+void _Z9MaterialsDE(Materials* _this){}
+
+
+/*Material_t*/
 Material_t* _Z10Material_t14assignOperator(Material_t* _this, const Material_t* other){
     _this->material = other->material;
     return _this;
 }
+
+void _Z11Material_tCE(Material_t* _this){
+    _Z9MaterialsCE((Materials*)_this);
+}
+
+void _Z11Material_tDE(Material_t* _this){
+    _Z9MaterialsDE((Materials*)_this);
+}
+
 
 /*/// PhysicalBox Defs ///////////*/
 
@@ -21,7 +37,7 @@ void _Z11PhysicalBoxCEddd(PhysicalBox* _this, double l, double w, double h){
     _Z11PhysicalBox6printpFE(_this);
 }
 
-void _Z11PhysicalBoxCEdddTypes(PhysicalBox* _this, double l, double w, double h, enum Types t){
+void _Z11PhysicalBoxCEdddTypes(PhysicalBox* _this, double l, double w, double h,  Types t){
     _Z3BoxCEddd((Box*)_this, l, w, h);
     _this->material.material = t;
 
@@ -33,7 +49,7 @@ void _Z11PhysicalBoxCEdddTypes(PhysicalBox* _this, double l, double w, double h,
     _Z11PhysicalBox6printpFE(_this);
 }
 
-void _Z11PhysicalBoxCETypes(PhysicalBox* _this, enum Types t)
+void _Z11PhysicalBoxCETypes(PhysicalBox* _this,  Types t)
 {
     _Z3BoxCEd(((Box*)_this), 1);
     _this->material.material = t;

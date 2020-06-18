@@ -6,19 +6,19 @@
 
 /*/// Materials ///////////*/
 
-typedef struct Materials{
-    char c;
-}Materials;
+typedef struct Materials{}Materials;
 
-enum Types
+typedef enum Types
 {
     PLASTIC,
     METAL,
     WOOD,
     PAPER,
     OTHER
-};
+}Types;
 
+void _Z9MaterialsCE(Materials* _this);
+void _Z9MaterialsDE(Materials* _this);
 
 /*inline const char* _Z9Materials7getNameFETypes(enum Types type)
 {
@@ -28,12 +28,16 @@ enum Types
 
 typedef struct Material_t
 {
-    enum Types material;
+     Materials m_mat;
+     Types material;
 }Material_t;
+
+void _Z11Material_tCE(Material_t* _this);
+void _Z11Material_tDE(Material_t* _this);
 
 Material_t* _Z10Material_t14assignOperator(Material_t* _this, const Material_t* other);
 
-/*inline void _Z10Material_tCETypes(Material_t* _this, enum Types mat){
+/*inline void _Z10Material_tCETypes(Material_t* _this,  Types mat){
 
     _this->material = mat;
 
@@ -50,7 +54,6 @@ inline const char* _Z10Material_t4nameFE(const Material_t* _this){
     }
 }*/
 
-
 /*/// PhysicalBox ///////////*/
 
 
@@ -60,13 +63,13 @@ typedef struct PhysicalBox{
 }PhysicalBox;
 
 void _Z11PhysicalBoxCEddd(PhysicalBox* _this, double l, double w, double h);
-void _Z11PhysicalBoxCEdddTypes(PhysicalBox* _this, double l, double w, double h, enum Types t);
-void _Z11PhysicalBoxCETypes(PhysicalBox* _this, enum Types t);
+void _Z11PhysicalBoxCEdddTypes(PhysicalBox* _this, double l, double w, double h,  Types t);
+void _Z11PhysicalBoxCETypes(PhysicalBox* _this,  Types t);
 void _Z11PhysicalBoxCEPhysicalBox(PhysicalBox* _this, PhysicalBox* other);
 PhysicalBox* _Z11PhysicalBox14assignOperatorFEPhysicalBox(PhysicalBox* _this, const PhysicalBox* other);
 void _Z11PhysicalBoxDE(PhysicalBox* _this);
 
-/*enum Types _Z11PhysicalBox11getMaterialFE(const PhythicalBox* _this);(inline)*/
+/* Types _Z11PhysicalBox11getMaterialFE(const PhythicalBox* _this);(inline)*/
 void _Z11PhysicalBox6printpFE(const PhysicalBox* _this);
 
 
