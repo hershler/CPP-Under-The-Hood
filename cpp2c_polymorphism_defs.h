@@ -7,7 +7,7 @@
 typedef enum funcs{
     dtor,
     print_char,
-    print_long,
+    print_long_char,
     get_default_symbol
 }funcs;
 
@@ -74,7 +74,6 @@ char _Z12PrePostFixer16getDefaultSymbolFE(const PrePostFixer* _this);
 /*   PrePostDollarFixer     */
 
 extern func_ptr PrePostDollarFixerVPTR[];
-inline extern const char _Z18PrePostDollarFixer14DEFAULT_SYMBOLVE;
 
 typedef struct PrePostDollarFixer
 {
@@ -94,7 +93,6 @@ char _Z18PrePostDollarFixer16getDefaultSymbolFE(const PrePostDollarFixer* _this)
 /*   PrePostHashFixer    */
 
 extern func_ptr PrePostHashFixerVPTR[];
-inline extern const char _Z16PrePostHashFixer14DEFAULT_SYMBOLVE;
 
 typedef struct PrePostHashFixer{
     PrePostDollarFixer _ppdfixer;
@@ -112,18 +110,18 @@ char _Z16PrePostHashFixer16getDefaultSymbolFE(const PrePostHashFixer* _this);
 /*    PrePostFloatDollarFixer     */
 
 extern func_ptr PrePostFloatDollarFixerVPTR[];
-inline extern const char _Z23PrePostFloatDollarFixer14DEFAULT_SYMBOLVE;
+
 
 typedef struct PrePostFloatDollarFixer
 {
     PrePostDollarFixer _ppdfixer;
 }PrePostFloatDollarFixer;
 
-void _Z23PrePostFloatDollarCEcpcp(PrePostFloatDollarFixer* _this, const char* prefix, const char* postfix);
-void _Z23PrePostFloatDollarDE(PrePostFloatDollarFixer* _this);
-void _Z23PrePostFloatDollar5printFEf(const PrePostFloatDollarFixer* _this, float num);
-void _Z23PrePostFloatDollar5printFEfc(const PrePostFloatDollarFixer* _this, float num, char symbol);
-char _Z23PrePostFloatDollar16getDefaultSymbolFE(const PrePostFloatDollarFixer* _this);
+void _Z23PrePostFloatDollarFixerCEcpcp(PrePostFloatDollarFixer* _this, const char* prefix, const char* postfix);
+void _Z23PrePostFloatDollarFixerDE(PrePostFloatDollarFixer* _this);
+void _Z23PrePostFloatDollarFixer5printFEf(const PrePostFloatDollarFixer* _this, float num);
+void _Z23PrePostFloatDollarFixer5printFEfc(const PrePostFloatDollarFixer* _this, float num, char symbol);
+char _Z23PrePostFloatDollarFixer16getDefaultSymbolFE(const PrePostFloatDollarFixer* _this);
 
 /*    PrePostChecker    */
 
@@ -163,11 +161,12 @@ void _Z10Multiplier5printFEcp(const Multiplier* _this, const char* text);
 
 inline Multiplier::Multiplier(int t=2)
 {
+    _Z20DefaultTextFormatterCE(_this);
     _this -> times = t;
     printf("--- Multiplier CTOR: times = %d\n", _this->times);
 }
 */
 
 
-#endif // __CPP2C_POLYMORPHISM_H__
+#endif /* __CPP2C_POLYMORPHISM_H__*/
 
