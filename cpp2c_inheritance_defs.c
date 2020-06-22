@@ -23,7 +23,7 @@ void _Z11Material_tDE(Material_t* _this){
 }
 
 
-/*/// PhysicalBox Defs ///////////*/
+/*   PhysicalBox Defs   */
 
 
 void _Z11PhysicalBoxCEddd(PhysicalBox* _this, double l, double w, double h){

@@ -4,38 +4,44 @@
 
 #include <stdio.h>
 
+typedef enum funcs{
+    dtor,
+    print_char,
+    print_long,
+    get_default_symbol
+}funcs;
+
+typedef void* (*func_ptr)(void*);
 
 /*    TextFormatter     */
 
-extern void* (*)(void*) TextFormatterVPTR[];
+extern func_ptr TextFormatterVPTR[];
 
 typedef struct TextFormatter{
-    (void* (*)(void*))* VPTR;
+    func_ptr* VPTR;
 }TextFormatter;
 
-
-void _Z13TextFormatterDE(TextFormatterDE* _this);
-void _ZTextFormatter5printFEcp(const TextFormatterDE* _this, const char* text);
+void _Z13TextFormatterCE(TextFormatter* _this);
+void _Z13TextFormatterDE(TextFormatter* _this);
+void _ZTextFormatter5printFEcp(const TextFormatter* _this, const char* text);
 
 /*   DefaultTextFormatter   */
 
-extern void* (*)(void*) DefaultTextFormatterVPTR[];
+extern func_ptr DefaultTextFormatterVPTR[];
 
 
 typedef struct DefaultTextFormatter
 {
-    (void* (*)(void*))* VPTR;
-    const int id;
+    TextFormatter _tformatter;
+    int id;
 }DefaultTextFormatter;
 
-struct Ider
-{
-    static int next_id;
-};
+extern int next_id;
+
 
 void _Z20DefaultTextFormatterCE(DefaultTextFormatter* _this);
 void _Z20DefaultTextFormatterCEDefaultTextFormatter(DefaultTextFormatter* _this, const DefaultTextFormatter* other);
-DefaultTextFormatter* _Z20DefaultTextFormatter14assignOperatorFEDefaultTextFormatter* (DefaultTextFormatter* _this, const DefaultTextFormatter&);
+DefaultTextFormatter* _Z20DefaultTextFormatter14assignOperatorFEDefaultTextFormatter(DefaultTextFormatter* _this, const DefaultTextFormatter* other);
 void _Z20DefaultTextFormatterDE(DefaultTextFormatter* _this);
 
 void _Z20DefaultTextFormatter5printFEcp(const DefaultTextFormatter* _this, const char* text);
@@ -46,12 +52,11 @@ DefaultTextFormatter* _Z22generateFormatterArrayFE();
 
 /*    PrePostFixer    */
 
-extern void* (*)(void*) PrePostFixerVPTR[];
+extern func_ptr PrePostFixerVPTR[];
 
 typedef struct PrePostFixer
 {
-    DefaultTextFormatter _dTextF;
-    (void* (*)(void*))* VPTR;
+    DefaultTextFormatter _dtformatter;
     const char* pre;
     const char* post;
 }PrePostFixer;
@@ -60,62 +65,59 @@ void _Z12PrePostFixerCEcpcp(PrePostFixer* _this, const char* prefix, const char*
 void _Z12PrePostFixerDE(PrePostFixer* _this);
 void _Z12PrePostFixerCEppfixer(PrePostFixer* _this, const PrePostFixer* other);
 
-void _Z12PrePostFixer5printFEcp(const PrePostFixer* _this const char* text);
-void _Z12PrePostFixer5printFElc(const PrePostFixer* _this, long num, char symbol = '\0') ;
+void _Z12PrePostFixer5printFEcp(const PrePostFixer* _this, const char* text);
+void _Z12PrePostFixer5printFElc(const PrePostFixer* _this, long num, char symbol/* = '\0'*/) ;
 
 char _Z12PrePostFixer16getDefaultSymbolFE(const PrePostFixer* _this);
 
 
 /*   PrePostDollarFixer     */
 
-extern void* (*)(void*) PrePostDollarFixerVPTR[];
-extern const char _Z18PrePostDollarFixer14DEFAULT_SYMBOLVE;
+extern func_ptr PrePostDollarFixerVPTR[];
+inline extern const char _Z18PrePostDollarFixer14DEFAULT_SYMBOLVE;
 
 typedef struct PrePostDollarFixer
 {
     PrePostFixer _ppfixer;
-    (void* (*)(void*))* VPTR;
 }PrePostDollarFixer;
 
 void _Z18PrePostDollarFixerCEcpcp(PrePostDollarFixer* _this, const char* prefix, const char* postfix);
 void _Z18PrePostDollarFixerCEppdfixer(PrePostDollarFixer* _this, const PrePostDollarFixer* other);
 void _Z18PrePostDollarFixerDE(PrePostDollarFixer* _this);
 
-void _Z18PrePostDollarFixer5printFEic(const PrePostDollarFixer* _this, int num, char symbol = DEFAULT_SYMBOL);
-void _Z18PrePostDollarFixer5printFElc(const PrePostDollarFixer* _this, long num, char symbol = DEFAULT_SYMBOL);
-void _Z18PrePostDollarFixer5printFEdc(const PrePostDollarFixer* _this, double num, char symbol = DEFAULT_SYMBOL);
+void _Z18PrePostDollarFixer5printFEic(const PrePostDollarFixer* _this, int num, char symbol/* = DEFAULT_SYMBOL*/);
+void _Z18PrePostDollarFixer5printFElc(const PrePostDollarFixer* _this, long num, char symbol/* = DEFAULT_SYMBOL*/);
+void _Z18PrePostDollarFixer5printFEdc(const PrePostDollarFixer* _this, double num, char symbol/* = DEFAULT_SYMBOL*/);
 char _Z18PrePostDollarFixer16getDefaultSymbolFE(const PrePostDollarFixer* _this);
 
 
 /*   PrePostHashFixer    */
 
-extern void* (*)(void*) PrePostHashFixerVPTR[];
-extern const char _Z16PrePostHashFixer14DEFAULT_SYMBOLVE;
+extern func_ptr PrePostHashFixerVPTR[];
+inline extern const char _Z16PrePostHashFixer14DEFAULT_SYMBOLVE;
 
-struct PrePostHashFixer{
-    PrePostDollarFixer _ppfixer;
-    (void* (*)(void*))* VPTR;
+typedef struct PrePostHashFixer{
+    PrePostDollarFixer _ppdfixer;
     int precision;
-};
+}PrePostHashFixer;
 
-void _Z16PrePostHashFixerCEi(PrePostHashFixer* _this, int prc = 4);
+void _Z16PrePostHashFixerCEi(PrePostHashFixer* _this, int prc/* = 4*/);
 void _Z16PrePostHashFixerDE(PrePostHashFixer* _this);
 
-void _Z16PrePostHashFixer5printFEic(const PrePostHashFixer* _this, int num, char symbol = DEFAULT_SYMBOL);
-void _Z16PrePostHashFixer5printFElc(const PrePostHashFixer* _this, long num, char symbol = DEFAULT_SYMBOL);
+void _Z16PrePostHashFixer5printFEic(const PrePostHashFixer* _this, int num, char symbol/* = DEFAULT_SYMBOL*/);
+void _Z16PrePostHashFixer5printFElc(const PrePostHashFixer* _this, long num, char symbol/* = DEFAULT_SYMBOL*/);
 char _Z16PrePostHashFixer16getDefaultSymbolFE(const PrePostHashFixer* _this);
 
 
 /*    PrePostFloatDollarFixer     */
 
-extern void* (*)(void*) PrePostFloatDollarFixerVPTR[];
-extern const char _Z23PrePostFloatDollarFixer16DEFAULT_SYMBOLVE;
+extern func_ptr PrePostFloatDollarFixerVPTR[];
+inline extern const char _Z23PrePostFloatDollarFixer14DEFAULT_SYMBOLVE;
 
-struct PrePostFloatDollarFixer
+typedef struct PrePostFloatDollarFixer
 {
     PrePostDollarFixer _ppdfixer;
-    (void* (*)(void*))* VPTR;
-};
+}PrePostFloatDollarFixer;
 
 void _Z23PrePostFloatDollarCEcpcp(PrePostFloatDollarFixer* _this, const char* prefix, const char* postfix);
 void _Z23PrePostFloatDollarDE(PrePostFloatDollarFixer* _this);
@@ -125,12 +127,11 @@ char _Z23PrePostFloatDollar16getDefaultSymbolFE(const PrePostFloatDollarFixer* _
 
 /*    PrePostChecker    */
 
-extern void* (*)(void*) PrePostCheckerVPTR[];
+extern func_ptr PrePostCheckerVPTR[];
 
-struct PrePostChecker {
+typedef struct PrePostChecker {
     PrePostFloatDollarFixer _ppfdfixer;
-    (void* (*)(void*))* VPTR;
-}
+}PrePostChecker;
 
 void _Z14PrePostCheckerCE(PrePostChecker* _this);
 void _Z14PrePostCheckerDE(PrePostChecker* _this);
@@ -146,27 +147,26 @@ void _Z14PrePostChecker32printDollarSymbolByScopeDirectlyFE(const PrePostChecker
 
 /*    Multiplier    */
 
-extern void* (*)(void*) MultiplierVPTR[];
+extern func_ptr MultiplierVPTR[];
 
-struct Multiplier
+typedef struct Multiplier
 {
     DefaultTextFormatter _dtformatter;
-    (void* (*)(void*))* VPTR;
     int times;
-};
+}Multiplier;
 
 void _Z10MultiplierDE(Multiplier* _this);
 
 void _Z10Multiplier5printFEcp(const Multiplier* _this, const char* text);
 
-/*   Multiplier Defs     */
+/*   Multiplier Defs
 
 inline Multiplier::Multiplier(int t=2)
 {
     _this -> times = t;
     printf("--- Multiplier CTOR: times = %d\n", _this->times);
 }
-
+*/
 
 
 #endif // __CPP2C_POLYMORPHISM_H__

@@ -8,11 +8,12 @@ void doPrePostFixer()
 {
     printf("\n--- start doPrePostFixer() ---\n\n");
 
+
     PrePostFixer angleBrackets("<<< ", " >>>");
-    angleBrackets.print("Hello World!");
-    angleBrackets.print(-777);
-    angleBrackets.print(350, '#');
-    angleBrackets.print(static_cast<long int>(3.14));
+    _Z12PrePostFixer5printFEcp(&angleBrackets, "Hello World!");
+    _Z12PrePostFixer5printFElc(&angleBrackets, -777, '\0');
+    _Z12PrePostFixer5printFElc(&angleBrackets, 350, '#');
+    _Z12PrePostFixer5printFElc(&angleBrackets, (long int)(3.14), '\0');
 
     printf("\n--- end doPrePostFixer() ---\n\n");
 }
@@ -22,9 +23,9 @@ void doPrePostDollarFixer()
     printf("\n--- start doPrePostDollarFixer() ---\n\n");
 
     PrePostDollarFixer asterisks("***** ", " *****");
-    asterisks.print(-777);
-    asterisks.print(350, '#');
-    asterisks.print(3.14f);
+    _Z18PrePostDollarFixer5printFEic(&asterisks, -777, '$');
+    _Z18PrePostDollarFixer5printFEic(&asterisks, 350, '#');
+    _Z18PrePostDollarFixer5printFEdc(&asterisks, 3.14f, '$');
 
     printf("\n--- end doPrePostDollarFixer() ---\n\n");
 }
@@ -34,12 +35,12 @@ void doPrePostChecker()
     printf("\n--- start doPrePostChecker() ---\n\n");
 
     PrePostChecker check;
-    check.printThisSymbolUsingFunc();
-    check.printThisSymbolDirectly();
-    check.printDollarSymbolByCastDirectly();
-    check.printDollarSymbolByScopeDirectly();
-    check.printDollarSymbolByCastUsingFunc();
-    check.printDollarSymbolByScopeUsingFunc();
+    _Z14PrePostChecker24printThisSymbolUsingFuncFE(&check);
+    _Z14PrePostChecker23printThisSymbolDirectlyFE(&check);
+    _Z14PrePostChecker32printDollarSymbolByCastUsingFuncFE(&check);
+    _Z14PrePostChecker33printDollarSymbolByScopeUsingFuncFE(&check);
+    _Z14PrePostChecker31printDollarSymbolByCastDirectlyFE(&check);
+    _Z14PrePostChecker32printDollarSymbolByScopeDirectlyFE(&check);
 
     printf("\n--- end doPrePostChecker() ---\n\n");
 }
@@ -49,13 +50,13 @@ void doPrePostFloatDollarFixer()
     printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
 
     PrePostFloatDollarFixer hashes("### ", " ###");
-    hashes.print(-777);
-    hashes.print(350, '#');
-    hashes.print(3.14f);
-
+    _Z23PrePostFloatDollar5printFEf(&hashes, -777);
+    _Z23PrePostFloatDollar5printFEfc(&hashes, 350, '#');
+    _Z23PrePostFloatDollar5printFEf(&hashes, 3.14f);
+////
     PrePostDollarFixer hashes2(hashes);
-    hashes2.print(7.5);
-    hashes2.print(100);
+    _Z23PrePostFloatDollar5printFEf(&hashes2, 7.5);
+    _Z23PrePostFloatDollar5printFEf(&hashes2, 100);
 
     printf("\n--- start doPrePostFloatDollarFixer() ---\n\n");
 }
