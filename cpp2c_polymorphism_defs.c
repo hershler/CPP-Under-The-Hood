@@ -72,6 +72,7 @@ void _Z12PrePostFixerCEcpcp(PrePostFixer* _this, const char* prefix, const char*
 }
 
 void _Z12PrePostFixerDE(PrePostFixer* _this){
+    ((TextFormatter*)_this)->VPTR = (func_ptr*)TextFormatterVPTR;
     printf("--- PrePostFixer DTOR: \"%s\"...\"%s\"\n", _this->pre, _this->post);
     _Z20DefaultTextFormatterDE((DefaultTextFormatter*) _this);
 }
@@ -125,6 +126,7 @@ void _Z18PrePostDollarFixerCEppdfixer(PrePostDollarFixer* _this, const PrePostDo
 }
 
 void _Z18PrePostDollarFixerDE(PrePostDollarFixer* _this){
+    ((TextFormatter*)_this)->VPTR = (func_ptr*)TextFormatterVPTR;
     printf("--- PrePostDollarFixer DTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)_this)->pre, ((PrePostFixer*)_this)->post);
     _Z12PrePostFixerDE((PrePostFixer*)_this);
 }
@@ -171,14 +173,13 @@ void _Z16PrePostHashFixerCEi(PrePostHashFixer* _this, int prc){
     }
 }
 
-void _Z16PrePostHashFixerDE(PrePostHashFixer* _this)
-{
+void _Z16PrePostHashFixerDE(PrePostHashFixer* _this){
+    ((TextFormatter*)_this)->VPTR = (func_ptr*)TextFormatterVPTR;
     printf("--- PrePostHashFixer DTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)_this)->pre, ((PrePostFixer*)_this)->post);
     _Z18PrePostDollarFixerDE((PrePostDollarFixer*)_this);
 }
 
-void _Z16PrePostHashFixer5printFEic(const PrePostHashFixer* _this, int num, char symbol/* = DEFAULT_SYMBOL*/)
-{
+void _Z16PrePostHashFixer5printFEic(const PrePostHashFixer* _this, int num, char symbol){
     printf("%-60s | ", "[PrePostHashFixer::print(int, char)]");
     printf("-->\n");
     {
@@ -188,8 +189,7 @@ void _Z16PrePostHashFixer5printFEic(const PrePostHashFixer* _this, int num, char
     }
 }
 
-void _Z16PrePostHashFixer5printFElc(const PrePostHashFixer* _this, long num, char symbol/* = DEFAULT_SYMBOL*/)
-{
+void _Z16PrePostHashFixer5printFElc(const PrePostHashFixer* _this, long num, char symbol){
     printf("%-60s | ", "[PrePostHashFixer::print(long, char)]");
     printf("-->\n");
 
@@ -200,8 +200,7 @@ void _Z16PrePostHashFixer5printFElc(const PrePostHashFixer* _this, long num, cha
     }
 }
 
-char _Z16PrePostHashFixer16getDefaultSymbolFE(const PrePostHashFixer* _this)
-{
+char _Z16PrePostHashFixer16getDefaultSymbolFE(const PrePostHashFixer* _this){
     return '#';
 }
 
@@ -217,8 +216,8 @@ void _Z23PrePostFloatDollarFixerCEcpcp(PrePostFloatDollarFixer* _this, const cha
     printf("--- PrePostFloatDollarFixer CTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)_this)->pre, ((PrePostFixer*)_this)->post);
 }
 
-void _Z23PrePostFloatDollarFixerDE(PrePostFloatDollarFixer* _this)
-{
+void _Z23PrePostFloatDollarFixerDE(PrePostFloatDollarFixer* _this){
+    ((TextFormatter*)_this)->VPTR = (func_ptr*)TextFormatterVPTR;
     printf("--- PrePostFloatDollarFixer DTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)_this)->pre, ((PrePostFixer*)_this)->post);
     _Z18PrePostDollarFixerDE((PrePostDollarFixer*) _this);
 }
@@ -231,15 +230,13 @@ void _Z23PrePostFloatDollarFixer5printFEf(const PrePostFloatDollarFixer* _this, 
     _Z23PrePostFloatDollarFixer5printFEfc(_this, num, '@');
 }
 
-void _Z23PrePostFloatDollarFixer5printFEfc(const PrePostFloatDollarFixer* _this, float num, char symbol)
-{
+void _Z23PrePostFloatDollarFixer5printFEfc(const PrePostFloatDollarFixer* _this, float num, char symbol){
     printf("%-60s | ", "[PrePostFloatDollarFixer::print(float, char)]");
 
     printf("%s%c%.2f%s\n", ((PrePostFixer*) _this)->pre, symbol, num, ((PrePostFixer*) _this)->post);
 }
 
-char _Z23PrePostFloatDollarFixer16getDefaultSymbolFE(const PrePostFloatDollarFixer* _this)
-{
+char _Z23PrePostFloatDollarFixer16getDefaultSymbolFE(const PrePostFloatDollarFixer* _this){
     return '@';
 }
 
@@ -256,8 +253,8 @@ void _Z14PrePostCheckerCE(PrePostChecker* _this){
     printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)_this)->pre, ((PrePostFixer*)_this)->post);
 }
 
-void _Z14PrePostCheckerDE(PrePostChecker* _this)
-{
+void _Z14PrePostCheckerDE(PrePostChecker* _this){
+    ((TextFormatter*)_this)->VPTR = (func_ptr*)TextFormatterVPTR;
     printf("--- PrePostChecker CTOR: \"%s\"...\"%s\"\n", ((PrePostFixer*)_this)->pre, ((PrePostFixer*)_this)->post);
     _Z23PrePostFloatDollarFixerDE((PrePostFloatDollarFixer*)_this);
 }
@@ -309,8 +306,8 @@ void _Z14PrePostChecker32printDollarSymbolByScopeDirectlyFE(const PrePostChecker
 
 func_ptr MultiplierVPTR[] = {(func_ptr) &_Z10MultiplierDE, (func_ptr) &_Z10Multiplier5printFEcp};
 
-void _Z10MultiplierDE(Multiplier* _this)
-{
+void _Z10MultiplierDE(Multiplier* _this){
+    ((TextFormatter*)_this)->VPTR = (func_ptr*)TextFormatterVPTR;
     printf("--- Multiplier DTOR: times = %d\n", _this->times);
     _Z20DefaultTextFormatterDE((DefaultTextFormatter*)_this);
 }
