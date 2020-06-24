@@ -189,31 +189,31 @@ void doFormatterPtrs()
 
     {
         pfmt[0] = (DefaultTextFormatter*)malloc(sizeof(PrePostDollarFixer));
-        _Z18PrePostDollarFixerCEcpcp((PrePostDollarFixer*)pfmt, "!!! ", " !!!");
+        _Z18PrePostDollarFixerCEcpcp((PrePostDollarFixer*)pfmt[0], "!!! ", " !!!");
     }
     {
         pfmt[1] = (DefaultTextFormatter*)malloc(sizeof(Multiplier));
         _Z20DefaultTextFormatterCE((DefaultTextFormatter*)(pfmt[1]));
+        ((TextFormatter*)pfmt[1])->VPTR = (func_ptr*)MultiplierVPTR;
         ((Multiplier*)(pfmt[1]))->times = 4;
         printf("--- Multiplier CTOR: times = %d\n", ((Multiplier*)(pfmt[1]))->times);
     }
     {
         pfmt[2] = (DefaultTextFormatter*)malloc(sizeof(PrePostChecker));
-        _Z14PrePostCheckerCE((PrePostChecker*)pfmt[2]);
+        _Z14PrePostCheckerCE((PrePostChecker*)(pfmt[2]));
     }
-
-
     for (i = 0; i < 3; ++i) {
         ((void (*)(const DefaultTextFormatter *,
-                const char *)) ((((TextFormatter *)(pfmt[i]))->VPTR)[print_char]))((pfmt[i]), "Hello World!");
+                   const char *)) ((((TextFormatter *)(pfmt[i]))->VPTR)[print_char]))((pfmt[i]), "Hello World!");
     }
+
+    printf("\n--- end doFormatterPtrs() ---\n\n");
 
     for (i = 2; i >= 0; --i) {
 
-        ((void (*)(const DefaultTextFormatter *)) ((((TextFormatter *) &(pfmt[i]))->VPTR)[dtor]))(pfmt[i]);
+        ((void (*)(const DefaultTextFormatter *)) ((((TextFormatter *) (pfmt[i]))->VPTR)[dtor]))(pfmt[i]);
         free(pfmt[i]);
     }
-    printf("\n--- end doFormatterPtrs() ---\n\n");
 }
 
 void doFormatterDynamicArray()
