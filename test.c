@@ -1,73 +1,70 @@
 //
 // Created by a on 6/17/20.
 //
-#include "cpp2c_inheritance_defs.h"
+
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
-void get_exe_files(char* files2exe, const char* suffix){
+int testCpp2c(char* type){
 
-    char* touch[]={"touch", "test.txt", NULL};
-    char* ls[]={"ls", ">", "test.txt", NULL};
-    char* rm[]={"rm", "test.txt", NULL};
+	char path[25];
+    char* gcc[] = {"gcc", "-ansi", "-pedantic", "-o", "outc", "", "", NULL};
+	char* outc[] = {"./outc", ">", "out_c.txt", NULL};
+	char* gpp[] = {"g++", "-ansi", "-pedantic", "-o", "outcpp", "", "", NULL};
+	char* outcpp[] = {"./outcpp", ">", "out_cpp.txt", NULL};
+	char* diff[] = {"diff", "out_c.txt", "out_cpp.txt", NULL};
+	char** commands[] = {gcc, outc, gpp, outcpp};
+	int status;
+	int commandsLen = 5;
 
-    FILE* files_name;
-    int i=0;
+	path[0] = '\0';
+	gcc[5] = strcat(strcat(strcat(strcat(path, type), "/c/cpp2c_"), type), ".c");
+	path[0] = '\0';
+	gcc[6] = strcat(strcat(strcat(strcat(path, type), "/c/cpp2c_"), type), "_defs.c");
+	path[0] = '\0';
+	gpp[5] = strcat(strcat(strcat(strcat(path, type), "/cpp/cpp2c_"), type), ".cpp");
+	path[0] = '\0';
+	gpp[6] = strcat(strcat(strcat(strcat(path, type), "/cpp/cpp2c_"), type), "_defs.cpp");
 
-    execvp(touch[0], touch);
-    execvp(ls[0], ls);
+	for(int i = 0; i < commandsLen; ++i){
+		pid_t pid = fork();
 
-    if(!strcmp(suffix, "c")) {
-        files2exe[i++] = "gcc";
-    }
-    else if(!strcmp(suffix, "cpp")) {
-        files2exe[i++] = "g++";
-    }
-    files2exe[i++] = "-ansi";
-    files2exe[i++] = "-pedantic";
+		if(-1 == pid){
+			printf("error\n");
+			exit(-1);
+		}
+		if(0 == pid){
+			execvp(commands[i][0], commands[i]);
+		}
+		else{
+			waitpid(pid, &status, 0);
+		}
 
-    files_name = fopen("test.txt", "r");
-
-    while(1) {
-        fscanf(files_name, "%s", files2exe[i]);
-        if(files2exe[i][strlen((char*)files2exe[i]) + 1] == EOF){
-            break;
-        }
-        if(!strcmp(suffix, "c") && strlen((char*)files2exe[i]) > 3 && files2exe[i][strlen((char*)files2exe[i]) - 1] == 'c' && files2exe[i][strlen((char*)files2exe[i]) - 2] == '.' && !strcmp(files2exe[i],"test.c")){
-            ++i;
-        }
-        else if(!strcmp(suffix, "cpp") && strlen(files2exe[i]) > 5 && files2exe[i][strlen((char*)files2exe[i]) - 1] == 'p' && files2exe[i][strlen((char*)files2exe[i]) - 2] == 'p' && files2exe[i][(char*)strlen(files2exe[i]) - 3] == 'c'&& files2exe[i][strlen((char*)file2exe[i]) - 4] == '.' ){
-            ++i;
-        }
-    }
-    fclose(files_name);
-    execvp(rm[0], rm);
-    files2exe[i] = NULL;
-
+	}
+	return 0;
 }
+
+int testPolymorphism(){
+	return testCpp2c("polymorphism");
+}
+
+int testInheritance(){
+	return testCpp2c("inheritance");
+}
+
+int testEncapsulation(){
+	return testCpp2c("encapsulation");
+}
+
 
 int main(){
 
-    char* files2exe[20];
-    char* touch[]={"touch", "c_output.txt", NULL};
-    char* rm[]={"rm", "c_output.txt", NULL};
-    char* c_output[]={"./a.out", ">", "c_output.txt", NULL};
-    char* cpp_output[]={"./a.out", ">", "cpp_output.txt", NULL};
-
-
-    execvp(touch[0], touch);
-    get_exe_files(files2exe, "c");
-    execvp(files2exe[0], files2exe);
-    execvp(c_output[0], c_output);
-
-    touch[1] = "cpp_output.txt";
-    execvp(touch[0], touch);
-    get_exe_files(files2exe, "cpp");
-    execvp(files2exe[0], files2exe);
-    execvp(cpp_output[0], cpp_output);
-
-
-    /*execvp(rm[0], rm);
-    rm[1] = "cpp_output.txt";
-    execvp(rm[0], rm);*/
+	printf("%d\n", testPolymorphism());
+	printf("%d\n", testInheritance());
+	printf("%d\n", testEncapsulation());
 
 }
