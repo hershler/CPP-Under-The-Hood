@@ -2,3 +2,4 @@
 original_cpp/
 cmake-build-debug/
 CMakeLists.txt
+run_tests
