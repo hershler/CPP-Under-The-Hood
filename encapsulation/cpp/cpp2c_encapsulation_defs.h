@@ -33,7 +33,7 @@ bool operator==(const Box& lhs, const Box& rhs);
 bool operator!=(const Box& lhs, const Box& rhs);
 
 
-//// Box Defs ////////////
+/* Box Defs */
 
 inline double Box::getWidth() const
 {
@@ -78,7 +78,7 @@ inline bool operator!=(const Box& lhs, const Box&rhs)
 }
 
 
-//// Shelf ////////////
+/* Shelf */
 
 class Shelf
 {
@@ -99,7 +99,7 @@ private:
     Box boxes[NUM_BOXES];
 };
 
-//// Shelf Defs ////////////
+/* Shelf Defs */
 
 inline Box& Shelf::getBox(int index)
 {

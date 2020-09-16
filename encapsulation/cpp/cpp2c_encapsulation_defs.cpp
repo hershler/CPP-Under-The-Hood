@@ -1,7 +1,8 @@
 #include <cstdio>
 #include "cpp2c_encapsulation_defs.h"
 
-//// Box ////////////
+
+/* Box */
 
 Box::Box(double dim) 
 :   length(dim)
@@ -39,7 +40,7 @@ void Box::print() const
 }
 
 
-//// Shelf ////////////
+/* Shelf */
 
 const char* const Shelf::DEF_MSG = "The total volume held on the shelf is";
 const char* Shelf::message = Shelf::DEF_MSG;

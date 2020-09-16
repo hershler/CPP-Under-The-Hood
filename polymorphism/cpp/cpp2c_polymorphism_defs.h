@@ -9,7 +9,7 @@ inline void printFunc(const char* fname)
     printf("%-60s | ", fname); 
 }
 
-//// TextFormatter ////////////
+/* TextFormatter */
 
 class TextFormatter
 {
@@ -18,7 +18,7 @@ public:
     virtual void print(const char* text) const = 0;
 };
 
-//// DefaultTextFormatter ////////////
+/* DefaultTextFormatter */
 
 class DefaultTextFormatter: public TextFormatter
 {
@@ -45,7 +45,7 @@ private:
 DefaultTextFormatter* generateFormatterArray();
 
 
-//// PrePostFixer ////////////
+/* PrePostFixer */
 
 class PrePostFixer: public DefaultTextFormatter
 {
@@ -70,7 +70,7 @@ private:
     const char* post;
 };
 
-//// PrePostFixer Defs ////////////
+/* PrePostFixer Defs */
 
 inline const char* PrePostFixer::getPrefix() const
 {
@@ -111,7 +111,7 @@ inline void PrePostFixer::print_num(long num, char symbol) const
 }
 
 
-//// PrePostDollarFixer ////////////
+/* PrePostDollarFixer */
 
 class PrePostDollarFixer: public PrePostFixer
 {
@@ -129,14 +129,14 @@ public:
     char getDefaultSymbol() const;
 };
 
-//// PrePostDollarFixer Defs ////////////
+/* PrePostDollarFixer Defs */
 
 inline char PrePostDollarFixer::getDefaultSymbol() const
 {
     return DEFAULT_SYMBOL;
 }
 
-//// PrePostHashFixer ////////////
+/* PrePostHashFixer */
 
 class PrePostHashFixer: public PrePostDollarFixer
 {
@@ -155,7 +155,7 @@ private:
     int precision;
 };
 
-//// PrePostHashFixer Defs ////////////
+/* PrePostHashFixer Defs */
 
 inline void PrePostHashFixer::print(double num, char symbol) const
 {
@@ -170,7 +170,7 @@ inline char PrePostHashFixer::getDefaultSymbol() const
 }
 
 
-//// PrePostFloatDollarFixer ////////////
+/* PrePostFloatDollarFixer */
 
 class PrePostFloatDollarFixer: public PrePostDollarFixer
 {
@@ -185,14 +185,14 @@ public:
     char getDefaultSymbol() const;
 };
 
-//// PrePostFloatDollarFixer Defs ////////////
+/* PrePostFloatDollarFixer Defs */
 
 inline char PrePostFloatDollarFixer::getDefaultSymbol() const
 {
     return DEFAULT_SYMBOL;
 }
 
-//// PrePostChecker ////////////
+/* PrePostChecker */
 
 class PrePostChecker: public PrePostFloatDollarFixer
 {
@@ -209,7 +209,7 @@ public:
 };
 
 
-//// Multiplier ////////////
+/* Multiplier */
 
 class Multiplier: public DefaultTextFormatter
 {
@@ -224,7 +224,7 @@ private:
     int times;
 }; 
 
-//// Multiplier Defs ////////////
+/* Multiplier Defs */
 
 inline Multiplier::Multiplier(int t)
 :   times(t)
@@ -246,7 +246,6 @@ inline void Multiplier::setTimes(int t)
 {
     times = t;
 }
-
 
 
 #endif // __CPP2C_POLYMORPHISM_H__

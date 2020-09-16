@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+
 /* TextFormatter Defs */
 
 func_ptr TextFormatterVPTR[2]  = {(func_ptr) &_Z13TextFormatterDE, (func_ptr) &_ZTextFormatter5printFEcp};
@@ -154,6 +155,7 @@ char _Z18PrePostDollarFixer16getDefaultSymbolFE(const PrePostDollarFixer* _this)
     return '$';
 }
 
+
 /*  PrePostHashFixer Defs    */
 
 func_ptr PrePostHashFixerVPTR[4] ={(func_ptr) &_Z16PrePostHashFixerDE, (func_ptr) &_Z12PrePostFixer5printFEcp, (func_ptr) &_Z16PrePostHashFixer5printFElc, (func_ptr) &_Z16PrePostHashFixer16getDefaultSymbolFE};
@@ -203,6 +205,7 @@ void _Z16PrePostHashFixer5printFElc(const PrePostHashFixer* _this, long num, cha
 char _Z16PrePostHashFixer16getDefaultSymbolFE(const PrePostHashFixer* _this){
     return '#';
 }
+
 
 /*   PrePostFloatDollarFixer Defs    */
 

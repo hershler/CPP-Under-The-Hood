@@ -1,8 +1,8 @@
 #ifndef __CPP2C_POLYMORPHISM_H__
 #define __CPP2C_POLYMORPHISM_H__
 
-
 #include <stdio.h>
+
 
 typedef enum funcs{
     dtor,
@@ -12,6 +12,7 @@ typedef enum funcs{
 }funcs;
 
 typedef void* (*func_ptr)(void*);
+
 
 /*    TextFormatter     */
 
@@ -24,6 +25,7 @@ typedef struct TextFormatter{
 void _Z13TextFormatterCE(TextFormatter* _this);
 void _Z13TextFormatterDE(TextFormatter* _this);
 void _ZTextFormatter5printFEcp(const TextFormatter* _this, const char* text);
+
 
 /*   DefaultTextFormatter   */
 
@@ -123,6 +125,7 @@ void _Z23PrePostFloatDollarFixer5printFEf(const PrePostFloatDollarFixer* _this, 
 void _Z23PrePostFloatDollarFixer5printFEfc(const PrePostFloatDollarFixer* _this, float num, char symbol);
 char _Z23PrePostFloatDollarFixer16getDefaultSymbolFE(const PrePostFloatDollarFixer* _this);
 
+
 /*    PrePostChecker    */
 
 extern func_ptr PrePostCheckerVPTR[];
@@ -142,7 +145,6 @@ void _Z14PrePostChecker31printDollarSymbolByCastDirectlyFE(const PrePostChecker*
 void _Z14PrePostChecker32printDollarSymbolByScopeDirectlyFE(const PrePostChecker* _this);
 
 
-
 /*    Multiplier    */
 
 extern func_ptr MultiplierVPTR[];
@@ -157,15 +159,6 @@ void _Z10MultiplierDE(Multiplier* _this);
 
 void _Z10Multiplier5printFEcp(const Multiplier* _this, const char* text);
 
-/*   Multiplier Defs
-
-inline Multiplier::Multiplier(int t=2)
-{
-    _Z20DefaultTextFormatterCE(_this);
-    _this -> times = t;
-    printf("--- Multiplier CTOR: times = %d\n", _this->times);
-}
-*/
 
 
 #endif /* __CPP2C_POLYMORPHISM_H__*/

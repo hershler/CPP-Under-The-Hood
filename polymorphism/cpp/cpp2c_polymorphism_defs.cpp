@@ -3,7 +3,7 @@
 using std::printf;
 
 
-//// DefaultTextFormatter Defs ////////////
+/* DefaultTextFormatter Defs */
 
 int DefaultTextFormatter::Ider::next_id = 0;
 
@@ -42,7 +42,7 @@ DefaultTextFormatter* generateFormatterArray()
 }
 
 
-//// PrePostFixer Defs ////////////
+/* PrePostFixer Defs */
 
 PrePostFixer::PrePostFixer(const char* prefix, const char* postfix)
 :   pre(prefix)
@@ -64,7 +64,7 @@ void PrePostFixer::print(const char* text) const
 }
 
 
-//// PrePostDollarFixer Defs ////////////
+/* PrePostDollarFixer Defs */
 
 PrePostDollarFixer::PrePostDollarFixer(const char* prefix, const char* postfix)
 :   PrePostFixer(prefix, postfix)
@@ -106,7 +106,7 @@ void PrePostDollarFixer::print(double num, char symbol) const
 }
 
 
-//// PrePostHashFixer Defs ////////////
+/* PrePostHashFixer Defs */
 
 PrePostHashFixer::PrePostHashFixer(int prc)
 :   PrePostDollarFixer("===> ", " <===")
@@ -139,7 +139,7 @@ void PrePostHashFixer::print(long num, char symbol) const
 }
 
 
-//// PrePostFloatDollarFixer Defs ////////////
+/* PrePostFloatDollarFixer Defs */
 
 PrePostFloatDollarFixer::PrePostFloatDollarFixer(const char* prefix, const char* postfix)
 :   PrePostDollarFixer(prefix, postfix)
@@ -167,7 +167,7 @@ void PrePostFloatDollarFixer::print(float num, char symbol) const
     printf("%s%c%.2f%s\n", getPrefix(), symbol, num, getPostfix());
 }
 
-//// PrePostChecker Defs ////////////
+/* PrePostChecker Defs */
 
 PrePostChecker::PrePostChecker()
 :   PrePostFloatDollarFixer("[[[[ ", " ]]]]")
@@ -223,7 +223,7 @@ void PrePostChecker::printDollarSymbolByScopeDirectly() const
 }
 
 
-//// Multiplier Defs ////////////
+/* Multiplier Defs */
     
 void Multiplier::print(const char* text) const
 {

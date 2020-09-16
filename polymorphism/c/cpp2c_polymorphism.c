@@ -19,6 +19,7 @@ void doPrePostFixer()
     _Z12PrePostFixerDE(&angleBrackets);
 }
 
+
 void doPrePostDollarFixer()
 {
     PrePostDollarFixer asterisks;
@@ -33,6 +34,7 @@ void doPrePostDollarFixer()
     printf("\n--- end doPrePostDollarFixer() ---\n\n");
     _Z18PrePostDollarFixerDE(&asterisks);
 }
+
 
 void doPrePostChecker()
 {
@@ -50,6 +52,7 @@ void doPrePostChecker()
     printf("\n--- end doPrePostChecker() ---\n\n");
     _Z14PrePostCheckerDE(&check);
 }
+
 
 void doPrePostFloatDollarFixer()
 {
@@ -71,6 +74,7 @@ void doPrePostFloatDollarFixer()
     _Z23PrePostFloatDollarFixerDE(&hashes);
 }
 
+
 void runAsPrePostFixerRef(const PrePostFixer* pp)
 {
     printf("\n--- start runAsPrePostFixerRef() ---\n\n");
@@ -79,6 +83,7 @@ void runAsPrePostFixerRef(const PrePostFixer* pp)
 
     printf("\n--- end runAsPrePostFixerRef() ---\n\n");
 }
+
 
 void runAsPrePostDollarFixerRef(const PrePostDollarFixer* pp)
 {
@@ -89,6 +94,7 @@ void runAsPrePostDollarFixerRef(const PrePostDollarFixer* pp)
     printf("\n--- end runAsPrePostDollarFixerRef() ---\n\n");
 }
 
+
 void runAsPrePostDollarFixerObj(const PrePostDollarFixer pp)
 {
     printf("\n--- start runAsPrePostDollarFixerObj() ---\n\n");
@@ -98,6 +104,7 @@ void runAsPrePostDollarFixerObj(const PrePostDollarFixer pp)
     printf("\n--- end runAsPrePostDollarFixerObj() ---\n\n");
 }
 
+
 void runAsPrePostHashFixerRef(const PrePostHashFixer* pp)
 {
     printf("\n--- start runAsPrePostHashFixerRef() ---\n\n");
@@ -106,6 +113,7 @@ void runAsPrePostHashFixerRef(const PrePostHashFixer* pp)
 
     printf("\n--- end runAsPrePostHashFixerRef() ---\n\n");
 }
+
 
 void doMultiplier()
 {
@@ -144,6 +152,7 @@ void doMultiplier()
     _Z10MultiplierDE(&m1);
 }
 
+
 void doFormatterArray() {
     int i;
     DefaultTextFormatter formatters[3];
@@ -180,6 +189,7 @@ void doFormatterArray() {
     }
 }
 
+
 void doFormatterPtrs()
 {
     int i;
@@ -215,6 +225,7 @@ void doFormatterPtrs()
     printf("\n--- end doFormatterPtrs() ---\n\n");
 }
 
+
 void doFormatterDynamicArray()
 {
     int i;
@@ -233,6 +244,7 @@ void doFormatterDynamicArray()
 
     printf("\n--- end doFormatterDynamicArray() ---\n\n");
 }
+
 
 int main()
 {
