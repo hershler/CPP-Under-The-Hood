@@ -21,7 +21,6 @@ void doMaterials()
     printf("\n--- End doMaterials() ---\n\n");
 }
 
-
 void doPhysicalBox()
 {
     printf("\n--- Start doPhysicalBox() ---\n\n");
@@ -44,7 +43,6 @@ void doPhysicalBox()
 
     printf("\n--- End doPhysicalBox() ---\n\n");
 }
-
 
 void doWeightBox()
 {
